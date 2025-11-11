@@ -1,0 +1,25 @@
+---
+type Variant = 'primary' | 'secondary';
+
+interface Props extends astroHTML.JSX.ButtonHTMLAttributes {
+  variant: Variant;
+}
+
+const { variant, class: classList, ...rest } = Astro.props;
+
+const isPrimary = variant === 'primary';
+const isSecondary = variant === 'secondary';
+
+---
+
+<button
+  class="px-6 py-4 rounded-4xl text-xl"
+  class:list={{
+    ['border-2 border-theme-primary bg-theme-primary text-slate-700']: isPrimary,
+    ['border-2 border-slate-700']: isSecondary,
+    [`${classList}`]: classList
+  }}
+  {...rest}
+>
+  <slot />
+</button>

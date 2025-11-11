@@ -1,0 +1,43 @@
+---
+
+const Links = [
+  { label: 'Inicio', to: '/' },
+  { label: 'Sobre mi', to: '/' },
+  { label: 'Habilidades', to: '/' },
+  { label: 'Experiencia', to: '/' },
+]
+
+---
+
+<header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+  <nav class="max-w-5xl mx-auto px-6 py-4">
+    <div
+      class="flex justify-between items-center bg-black/30 backdrop-blur-lg rounded-full px-8 py-3 ring-1 ring-white/10"
+    >
+      <a
+        href="#home"
+        class="text-xl font-bold tracking-tighter text-white hover:text-theme-primary transition-colors cursor-pointer interactive"
+      >
+        AJ
+      </a>
+      <ul class="md:flex space-x-8">
+        {Links.map(link => (
+          <li>
+            <a
+              href={link.to}
+              class="nav-link text-gray-300 hover:text-theme-primary transition-colors cursor-pointer interactive"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+      <a
+        href="mailto:contact@anmijurane.dev"
+        class="hidden md:block bg-theme-primary text-white font-medium px-5 py-2 rounded-full hover:bg-theme-primary transition-colors cursor-pointer interactive"
+      >
+        Contactame
+      </a>
+    </div>
+  </nav>
+</header>
