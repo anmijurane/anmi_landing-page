@@ -1,0 +1,6 @@
+@import "tailwindcss";
+@import './index.css';
+
+@theme {
+  --color-theme-primary: var(--color-cyan-400);
+}
