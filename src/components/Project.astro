@@ -1,0 +1,91 @@
+---
+//TODO: implement reusable components of decision order render
+import Arrow from "@assets/icons-astro/Arrow.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  technologies: string[];
+  goTo?: string;
+  layout?: "first-image" | "first-info";
+}
+
+const {
+  title,
+  description,
+  goTo = "",
+  technologies,
+  layout = "first-image",
+} = Astro.props;
+---
+
+<div class="w-full flex items-center">
+  {layout === 'first-image' && (
+    <div
+      class="w-7/12 rounded-xl bg-zinc-800 flex justify-center items-center h-96"
+    >
+      <p class="text-white">{title}</p>
+    </div>
+    <div class="w-5/12 p-8 flex flex-col gap-6">
+      <h4 class="text-3xl text-white font-bold">{title}</h4>
+      <p class="text-gray-500 text-xl">{description}</p>
+      <div class="flex gap-2">
+        {
+          technologies.map((technology) => (
+            <span
+              title={`Conoce mi experiencia con ${technology}`}
+              class="bg-theme-primary/30 text-theme-primary rounded-full px-4 py-1 hover:-translate-y-1 transition cursor-pointer"
+            >
+              {technology}
+            </span>
+          ))
+        }
+      </div>
+      {
+        !!goTo && (
+          <a
+            href={`${goTo}`}
+            class="text-theme-primary font-medium inline-flex items-center hover:underline cursor-pointer group text-xl"
+          >
+            Ver caso de estudio
+            <Arrow class="size-6 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        )
+      }
+    </div>
+  )}
+  {layout === 'first-info' && (
+    <div class="w-5/12 p-8 flex flex-col gap-6">
+      <h4 class="text-3xl text-white font-bold">{title}</h4>
+      <p class="text-gray-500 text-xl">{description}</p>
+      <div class="flex gap-2">
+        {
+          technologies.map((technology) => (
+            <span
+              title={`Conoce mi experiencia con ${technology}`}
+              class="bg-theme-primary/30 text-theme-primary rounded-full px-4 py-1 hover:-translate-y-1 transition cursor-pointer"
+            >
+              {technology}
+            </span>
+          ))
+        }
+      </div>
+      {
+        !!goTo && (
+          <a
+            href={`${goTo}`}
+            class="text-theme-primary font-medium inline-flex items-center hover:underline cursor-pointer group text-xl"
+          >
+            Ver caso de estudio
+            <Arrow class="size-6 ml-1 transform transition-transform duration-300 group-hover:translate-x-1" />
+          </a>
+        )
+      }
+    </div>
+    <div
+      class="w-7/12 rounded-xl bg-zinc-800 flex justify-center items-center h-96"
+    >
+      <p class="text-white">{title}</p>
+    </div>
+  )}
+</div>

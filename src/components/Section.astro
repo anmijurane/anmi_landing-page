@@ -1,0 +1,19 @@
+---
+interface Props extends astroHTML.JSX.HTMLAttributes {
+  position?: "col" | "row";
+}
+
+const { position = "row", class: className, ...rest } = Astro.props;
+const isColPositon = position === "col";
+---
+
+<section
+  class="flex justify-center h-dvh w-full px-10 gap-8"
+  class:list={{
+    [`${className}`]: className,
+    ["flex-col"]: isColPositon,
+  }}
+  {...rest}
+>
+  <slot />
+</section>

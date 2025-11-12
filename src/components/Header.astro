@@ -1,12 +1,13 @@
 ---
+import Burger from "@assets/icons-astro/Burger.astro";
+import Button from "./Button.astro";
 
 const Links = [
-  { label: 'Inicio', to: '/' },
-  { label: 'Sobre mi', to: '/' },
-  { label: 'Habilidades', to: '/' },
-  { label: 'Experiencia', to: '/' },
-]
-
+  { id: "home", label: "Inicio", to: "#home" },
+  { id: "about_me", label: "Sobre mi", to: "#about_me" },
+  { id: "projects", label: "Proyectos", to: "#projects" },
+  { id: "technologies", label: "Tecnologías", to: "#technologies" },
+];
 ---
 
 <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
@@ -20,24 +21,24 @@ const Links = [
       >
         AJ
       </a>
-      <ul class="md:flex space-x-8">
-        {Links.map(link => (
-          <li>
-            <a
-              href={link.to}
-              class="nav-link text-gray-300 hover:text-theme-primary transition-colors cursor-pointer interactive"
-            >
-              {link.label}
-            </a>
-          </li>
-        ))}
+      <ul class="hidden lg:flex space-x-8">
+        {
+          Links.map((link) => (
+            <li>
+              <a
+                href={link.to}
+                class="nav-link text-gray-300 hover:text-theme-primary transition-colors cursor-pointer interactive"
+              >
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
-      <a
-        href="mailto:contact@anmijurane.dev"
-        class="hidden md:block bg-theme-primary text-white font-medium px-5 py-2 rounded-full hover:bg-theme-primary transition-colors cursor-pointer interactive"
-      >
-        Contactame
+      <a href="#contact" class="hidden nav-link">
+        <Button variant="primary" class="font-medium">Contactame</Button>
       </a>
+      <Burger fill="#"/>
     </div>
   </nav>
 </header>
