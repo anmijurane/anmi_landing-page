@@ -1,0 +1,26 @@
+---
+import Project from "@components/Project.astro";
+import Section from "@components/Section.astro";
+---
+
+<Section class="justify-start reveal" position="col" id="projects">
+  <h2 class="text-theme-primary text-5xl font-bold tracking-tight mb-4">
+    Proyectos
+  </h2>
+
+  <div class="flex flex-col gap-16">
+    <Project
+      title="Proyeto E-commers"
+      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis doloremque inventore aspernatur quidem blanditiis itaque distinctio, commodi ullam repudiandae temporibus alias aperiam dolores provident aliquid odit harum autem quis dolor."
+      technologies={["Next.js", "Stripe", "Firebase", "Tailwind CSS"]}
+      goTo="/project/succescase/E-commers"
+    />
+    <Project
+      title="Proyeto Rutinas"
+      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis doloremque inventore aspernatur quidem blanditiis itaque distinctio, commodi ullam repudiandae temporibus alias aperiam dolores provident aliquid odit harum autem quis dolor."
+      technologies={["Astro JS", "Tailwind", "React", "SSR"]}
+      goTo="/project/succescase/Rutinas"
+      layout="first-info"
+    />
+  </div>
+</Section>

@@ -1,18 +1,25 @@
 ---
 import Button from "@components/Button.astro";
-
-
+import Section from "@components/Section.astro";
 ---
 
-<section class="flex justify-center flex-col h-dvh w-full px-10 gap-8">
-
-  <h1 class="text-white font-bold text-8xl">Andres Jurado</h1>
-  <h3 class="text-gray-400 text-6xl">Convierto <span class="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500">ideas complejas</span> en experiencias</h3>
-  <p class="text-2xl text-gray-500">Desarrollador Web especializado en crear aplicaciones modernas, responsivas y centradas en el usuario.</p>
-
-  <div class="flex gap-2">
-    <Button variant="primary">Ver Proyectos</Button>
-    <Button variant="secondary">Hablemos</Button>
+<Section class="reveal" position="col" id="home">
+  <h1 class="text-white font-bold text-5xl lg:text-8xl">Andres Jurado</h1>
+  <h3 class="text-gray-400 text-5xl lg:text-6xl">
+    Convierto
+    <span
+      class="text-transparent bg-clip-text bg-linear-to-r from-cyan-400 to-blue-500"
+    >
+      ideas complejas
+    </span>
+    en experiencias
+  </h3>
+  <p class="text-2xl text-gray-500">
+    Desarrollador Web especializado en crear aplicaciones modernas, responsivas
+    y centradas en el usuario.
+  </p>
+  <div class="flex gap-2 flex-colLo  lg:flex-row">
+    <Button variant="primary" size="xl">Ver Proyectos</Button>
+    <Button variant="secondary" size="xl">Hablemos</Button>
   </div>
-
-</section>
+</Section>
