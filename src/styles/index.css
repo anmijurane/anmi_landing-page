@@ -2,6 +2,7 @@ body {
   font-family: 'Inter', sans-serif;
   background-color: #0A0A0A;
   color: #E0E0E0;
+  cursor: none;
 }
 
 #custom-cursor {
@@ -57,4 +58,10 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #16A3B6;
+}
+
+.nav-link-active.nav-link-active {
+  color: #22D3EE;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+  
 }
