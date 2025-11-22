@@ -1,60 +1,87 @@
 ---
 import Section from "@components/Section.astro";
 
-const technologies = [
-  "React",
-  "TailwindCSS",
-  "Astro (SSR + React Islands)",
-  "GSAP",
-  "Framer Motion",
-  "TanStack Query",
-  "Nanostores",
-  "HTML5",
-  "CSS Modules",
-  "CSS BEM",
-  "CSS OOCSS",
-  "CSS SMACSS",
-  "Design System",
-  "Atomic Design",
-  "UI Inventory",
-  "Consistency Layers",
-  "Redux Tool Kit",
+interface TechonogiesCategory {
+  title: string;
+  tools: Array<string>;
+}
 
-  "Node.js",
-  "Google Cloud Platform",
-  "GitLab CI/CD",
-  "NGINX",
-  "PM2",
-  "PostgreSQL",
-  "Nest js",
-  "TypeORM",
-  "Bash",
+type Categories = "frontendAndUX" | "reactAndEcosystem" | "backend" | "devOps";
 
-  "Biome",
-  "ESLint + Prettier",
-  "Git",
-  "GitFlow",
-];
+const technologies: Record<Categories, TechonogiesCategory> = {
+  frontendAndUX: {
+    title: "Arquitectura Frontend & UI",
+    tools: [
+      "Atomic Design",
+      "Design System",
+      "UI Inventory",
+      "Consistency Layers",
+      "CSS Modules",
+      "CSS BEM / OOCSS / SMACSS",
+      "TailwindCSS",
+    ],
+  },
+  reactAndEcosystem: {
+    title: "Core & Ecosistema React",
+    tools: [
+      "React",
+      "Astro (SSR + Islands)",
+      "HTML5",
+      "TanStack Query",
+      "Redux Tool Kit",
+      "Nanostores",
+      "GSAP",
+      "Framer Motion",
+    ],
+  },
+  backend: {
+    title: "Backend & Persistencia",
+    tools: ["Node.js", "NestJS", "PostgreSQL", "TypeORM"],
+  },
+  devOps: {
+    title: "DevOps, Calidad & Herramientas",
+    tools: [
+      "Git / GitFlow",
+      "GitLab CI/CD",
+      "Google Cloud Platform",
+      "NGINX",
+      "PM2",
+      "Bash",
+      "Biome",
+      "ESLint + Prettier",
+    ],
+  },
+};
 ---
 
 <Section class="justify-center reveal" position="col" id="technologies">
   <h2 class="text-theme-primary text-5xl font-bold tracking-tight mb-4">
     Tecnologías
   </h2>
-  <div class="flex flex-col gap-16">
-    <p class="text-gray-500 text-xl w-1/2">
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat
-      necessitatibus sapiente officia quia dolorem esse nisi eos nulla error
-      beatae aliquid in unde, repellendus placeat nesciunt, amet nam, illo
-      sequi!
+  <div class="flex flex-col gap-8">
+    <p class="text-white text-xl lg:w-1/2">
+      Una selección de herramientas modernas orientadas a la excelencia técnica.
+      Utilizo este stack para desarrollar aplicaciones web de alto rendimiento,
+      priorizando la modularidad con Sistemas de Diseño, la seguridad de tipos
+      en el backend y la automatización de procesos de entrega.
     </p>
-    <div class="flex gap-4 flex-wrap">
+    <div class="flex gap-8 flex-col">
       {
-        technologies.map((technology) => (
-          <span class="bg-gray-900 text-white font-medium px-5 py-3 rounded-lg text-lg ring-1 ring-gray-800">
-            {technology}
-          </span>
-        ))
+        Object.keys(technologies).map((category) => {
+          const technology = technologies[category as Categories];
+          return (
+            <fieldset class="border border-solid border-gray-300 px-7 pb-6 rounded-2xl">
+              <legend class="p-4 text-xl border-0">{technology.title}</legend>
+              <div class="flex gap-4 flex-wrap">
+                {technology.tools.map((item) => (
+                  <span class="bg-gray-900 text-white font-medium px-5 py-3 rounded-lg text-lg ring-1 ring-gray-700">
+                    {item}
+                  </span>
+                ))}
+              </div>
+            </fieldset>
+          );
+        })
       }
     </div>
   </div>
