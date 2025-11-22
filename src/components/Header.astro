@@ -1,6 +1,7 @@
 ---
 import Burger from "@assets/icons-astro/Burger.astro";
 import Button from "./Button.astro";
+import Close from "@assets/icons-astro/Close.astro";
 
 const Links = [
   { id: "home", label: "Inicio", to: "#home" },
@@ -19,7 +20,7 @@ const Links = [
         href="#home"
         class="text-xl font-bold tracking-tighter text-white hover:text-theme-primary transition-colors cursor-pointer interactive"
       >
-        AJ
+        <img src="/logo.png" alt="Logo" class="size-10" />
       </a>
       <ul class="hidden lg:flex space-x-8">
         {
@@ -35,10 +36,57 @@ const Links = [
           ))
         }
       </ul>
-      <a href="#contact" class="hidden nav-link">
-        <Button variant="primary" class="font-medium">Contactame</Button>
-      </a>
-      <Burger fill="#"/>
+      <div class="lg:hidden cursor-pointer interactive" id="menu-toggle">
+        <Burger fill="#FFF" size="40px" />
+      </div>
     </div>
   </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div
+    id="mobile-menu"
+    class="fixed inset-0 bg-black/35 backdrop-blur-xl z-40 transform translate-x-full transition-transform duration-400 lg:hidden flex flex-col justify-center items-center"
+  >
+    <button
+      id="close-menu"
+      class="absolute top-8 right-14.5 text-white hover:text-theme-primary transition-colors interactive"
+      aria-label="Close menu"
+    >
+      <Close fill="#FFF" />
+    </button>
+
+    <ul class="flex flex-col items-center space-y-8">
+      {
+        Links.map((link) => (
+          <li>
+            <a
+              href={link.to}
+              class="mobile-nav-link text-2xl font-medium text-white hover:text-theme-primary transition-colors interactive"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
 </header>
+
+<script>
+  const menuToggle = document.getElementById("menu-toggle");
+  const closeMenu = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const mobileLinks = document.querySelectorAll(".mobile-nav-link");
+
+  const toggleMenu = () => {
+    mobileMenu?.classList.toggle("translate-x-full");
+    document.body.classList.toggle("overflow-hidden");
+  };
+
+  menuToggle?.addEventListener("click", toggleMenu);
+  closeMenu?.addEventListener("click", toggleMenu);
+
+  mobileLinks.forEach((link) => {
+    link.addEventListener("click", toggleMenu);
+  });
+</script>
