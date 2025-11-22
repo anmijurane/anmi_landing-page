@@ -1,0 +1,9 @@
+---
+interface Props {
+  height?: "12" | "14" | "16" | "20" | "24" | "48" | "64";
+}
+
+const { height = "24" } = Astro.props;
+---
+
+<div class={`h-${height} h-`}></div>
