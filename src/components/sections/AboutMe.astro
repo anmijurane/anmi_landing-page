@@ -1,5 +1,7 @@
 ---
 import Section from "@components/Section.astro";
+import Image from "astro/components/Image.astro";
+import me_profile from "@assets/me_profile.png";
 ---
 
 <Section class="items-center reveal" id="about_me">
@@ -31,9 +33,9 @@ import Section from "@components/Section.astro";
   </div>
   <div class="hidden lg:w-2/6 lg:flex justify-center items-center">
     <div
-      class="rounded-full border-4 ring-1 ring-gray-800 p-8 flex justify-center items-center bg-gray-900"
+      class="rounded-full border-4 ring-1 ring-gray-800 flex justify-center items-center size-80"
     >
-      <img src="/logo.png" alt="andres jurado logo" class="size-60" />
+      <Image src={me_profile} alt="andres jurado logo" class="rounded-full" />
     </div>
   </div>
 </Section>
