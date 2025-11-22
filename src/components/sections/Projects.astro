@@ -1,26 +1,20 @@
 ---
+import thumbnail_routines from "@assets/proyects/routines/thumbnail.png";
 import Project from "@components/Project.astro";
 import Section from "@components/Section.astro";
 ---
 
-<Section class="justify-start reveal" position="col" id="projects">
+<Section class="reveal" position="col" id="projects">
   <h2 class="text-theme-primary text-5xl font-bold tracking-tight mb-4">
     Proyectos
   </h2>
 
   <div class="flex flex-col gap-16">
     <Project
-      title="Proyeto E-commers"
-      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis doloremque inventore aspernatur quidem blanditiis itaque distinctio, commodi ullam repudiandae temporibus alias aperiam dolores provident aliquid odit harum autem quis dolor."
-      technologies={["Next.js", "Stripe", "Firebase", "Tailwind CSS"]}
-      goTo="/project/succescase/E-commers"
-    />
-    <Project
-      title="Proyeto Rutinas"
-      description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis doloremque inventore aspernatur quidem blanditiis itaque distinctio, commodi ullam repudiandae temporibus alias aperiam dolores provident aliquid odit harum autem quis dolor."
+      title="Rutinas de ejercicio"
+      description="Desarrollo de plataforma de rutinas para gym a nivel nacional, con más de 50k eventos diarios. Realizada con framework Astro con SSR, e integración con React para eventos y con elementos asincronos. La plataforma tambien tiene un log de registro para sacar estadistica de uso y realizar un reporte con la informaciôn registrada en la base de datos."
       technologies={["Astro JS", "Tailwind", "React", "SSR"]}
-      goTo="/project/succescase/Rutinas"
-      layout="first-info"
+      image={{ src: thumbnail_routines, alt: "Sitio de Rutinas thumbnail" }}
     />
   </div>
 </Section>
