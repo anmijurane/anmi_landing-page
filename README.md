@@ -1,60 +1,79 @@
 # Anmijurane's Landing Page
 
-This repository contains the source code for my personal landing page, built with the [Astro](https://astro.build/) framework.
+Welcome to the repository for my personal landing page! This project is a modern, fast, and responsive website built to showcase my portfolio and skills.
 
-## 🚀 Getting Started
+## 🚀 Tech Stack
 
-Follow these instructions to get a copy of the project up and running on your local machine for development and testing purposes.
+This project leverages the power of modern web technologies:
+
+-   **[Astro](https://astro.build/)**: The web framework for content-driven websites.
+-   **[Tailwind CSS v4](https://tailwindcss.com/)**: A utility-first CSS framework for rapid UI development.
+-   **[Biome](https://biomejs.dev/)**: A fast formatter and linter for the web.
+
+## 📂 Project Structure
+
+The project follows a standard Astro structure:
+
+```text
+/
+├── public/       # Static assets (images, fonts, etc.)
+├── src/
+│   ├── components/ # Reusable UI components
+│   ├── layouts/    # Page layouts
+│   ├── pages/      # Application routes
+│   ├── scripts/    # Client-side scripts
+│   └── styles/     # Global styles
+└── package.json  # Project dependencies and scripts
+```
+
+## 🛠️ Getting Started
+
+Follow these steps to get a local copy up and running.
+
+### Prerequisites
+
+-   Node.js (latest LTS version recommended)
+-   npm (comes with Node.js)
+
+### Installation
 
 1.  **Clone the repository**
-    ```sh
+
+    ```bash
     git clone https://github.com/anmijurane/anmijurane-landing.git
     cd anmijurane-landing
     ```
 
 2.  **Install dependencies**
-    ```sh
+
+    ```bash
     npm install
     ```
 
 3.  **Run the development server**
-    ```sh
+
+    ```bash
     npm run dev
     ```
-    Open [http://localhost:4321](http://localhost:4321) to view it in your browser. The page will reload if you make edits.
 
-## 📂 Project Structure
+    Open [http://localhost:4321](http://localhost:4321) in your browser to see the result.
 
-Inside of your Astro project, you'll see the following folders and files:
+## 📜 Scripts
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+Here are the available scripts you can run:
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+| Command              | Description                                           |
+| :------------------- | :---------------------------------------------------- |
+| `npm run dev`        | Starts the local development server.                  |
+| `npm run build`      | Builds the site for production into the `./dist/` folder. |
+| `npm run preview`    | Previews the production build locally.                |
+| `npm run check`      | Runs Biome to check for linting errors.               |
+| `npm run format:biome`| Runs Biome to format the code.                        |
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## 🤝 Contributing
 
-Any static assets, like images, can be placed in the `public/` directory.
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/anmijurane/anmijurane-landing/issues).
 
-## 🧞 Commands
+## 📄 License
 
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+This project is open source and available under the [MIT License](LICENSE).
