@@ -1,0 +1,53 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.3.7/schema.json",
+  "files": {
+    "includes": ["src/**"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentWidth": 2,
+    "lineWidth": 100,
+    "bracketSpacing": true,
+    "indentStyle": "space",
+    "lineEnding": "lf"
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "style": {
+        // It is placed because it is giving errors, but it must be validated because the rule must apply.
+        "noDescendingSpecificity": "off"
+      },
+      "correctness": {
+        // This rule should apply, but there is currently an issue on the part of the Biome team that
+        // still does not detect interpolation between astro files.
+        // Until it is resolved, it must remain disabled.
+        "noUnusedVariables": "off",
+        "noUnusedImports": "off"
+      },
+      "a11y": {
+        "noSvgWithoutTitle": "off"
+      },
+      "recommended": true,
+      "suspicious": {
+        "noEmptyInterface": "warn"
+      }
+    }
+  },
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "semicolons": "always",
+      "bracketSpacing": true,
+      "arrowParentheses": "asNeeded",
+      "trailingCommas": "es5"
+    }
+  },
+  "css": {
+    "formatter": {
+      "enabled": true,
+      "quoteStyle": "single",
+      "indentWidth": 2
+    }
+  }
+}
