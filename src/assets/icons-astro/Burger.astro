@@ -1,15 +1,16 @@
 ---
 interface Props extends astroHTML.JSX.SVGAttributes {
   fill?: string;
+  size?: string;
 }
-const { class: classList, fill = "#000000" } = Astro.props;
+const { class: classList, fill = "#000000", size = '100px' } = Astro.props;
 ---
 
 <svg
   class={classList}
   fill={fill}
-  width="800px"
-  height="800px"
+  width={size}
+  height={size}
   viewBox="0 0 100 100"
   version="1.1"
   xml:space="preserve"
