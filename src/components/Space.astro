@@ -1,9 +1,19 @@
 ---
 interface Props {
-  height?: '12' | '14' | '16' | '20' | '24' | '48' | '64';
+  height?: "12" | "14" | "16" | "20" | "24" | "48" | "64";
 }
 
-const { height = '24' } = Astro.props;
+const { height = "24" } = Astro.props;
+
+const heightClasses = {
+  "12": "h-12",
+  "14": "h-14",
+  "16": "h-16",
+  "20": "h-20",
+  "24": "h-24",
+  "48": "h-48",
+  "64": "h-64",
+};
 ---
 
-<div class={`h-${height} h-`}></div>
+<div class={heightClasses[height]}></div>
