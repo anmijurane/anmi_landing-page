@@ -1,10 +1,10 @@
 ---
 interface Props extends astroHTML.JSX.HTMLAttributes {
-  position?: "col" | "row";
+  position?: 'col' | 'row';
 }
 
-const { position = "row", class: className, ...rest } = Astro.props;
-const isColPositon = position === "col";
+const { position = 'row', class: className, ...rest } = Astro.props;
+const isColPositon = position === 'col';
 ---
 
 <section

@@ -1,8 +1,8 @@
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0A0A0A;
-  color: #E0E0E0;
-  cursor: none;
+  background-color: #0a0a0a;
+  color: #e0e0e0;
+  /* cursor: none; */
 }
 
 #custom-cursor {
@@ -11,11 +11,14 @@ body {
   top: 0;
   width: 10px;
   height: 10px;
-  background-color: #22D3EE;
+  background-color: #22d3ee;
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+  transition:
+    width 0.3s ease,
+    height 0.3s ease,
+    opacity 0.3s ease;
   z-index: 9999;
 }
 
@@ -34,7 +37,9 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
   will-change: opacity, transform;
 }
 
@@ -52,16 +57,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22D3EE;
+  background: #22d3ee;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16A3B6;
+  background: #16a3b6;
 }
 
 .nav-link-active.nav-link-active {
-  color: #22D3EE;
+  color: #22d3ee;
   text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
-  
 }

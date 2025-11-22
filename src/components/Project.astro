@@ -1,6 +1,6 @@
 ---
-import Arrow from "@assets/icons-astro/Arrow.astro";
-import Image from "astro/components/Image.astro";
+import Arrow from '@assets/icons-astro/Arrow.astro';
+import Image from 'astro/components/Image.astro';
 
 interface ImageProps {
   src: ImageMetadata;
@@ -12,18 +12,11 @@ interface Props {
   description: string;
   technologies: string[];
   goTo?: string;
-  layout?: "first-image" | "first-info";
+  layout?: 'first-image' | 'first-info';
   image: ImageProps;
 }
 
-const {
-  title,
-  description,
-  goTo = "",
-  technologies,
-  layout = "first-image",
-  image,
-} = Astro.props;
+const { title, description, goTo = '', technologies, layout = 'first-image', image } = Astro.props;
 ---
 
 <div

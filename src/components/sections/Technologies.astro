@@ -1,54 +1,54 @@
 ---
-import Section from "@components/Section.astro";
+import Section from '@components/Section.astro';
 
 interface TechonogiesCategory {
   title: string;
   tools: Array<string>;
 }
 
-type Categories = "frontendAndUX" | "reactAndEcosystem" | "backend" | "devOps";
+type Categories = 'frontendAndUX' | 'reactAndEcosystem' | 'backend' | 'devOps';
 
 const technologies: Record<Categories, TechonogiesCategory> = {
   frontendAndUX: {
-    title: "Arquitectura Frontend & UI",
+    title: 'Arquitectura Frontend & UI',
     tools: [
-      "Atomic Design",
-      "Design System",
-      "UI Inventory",
-      "Consistency Layers",
-      "CSS Modules",
-      "CSS BEM / OOCSS / SMACSS",
-      "TailwindCSS",
+      'Atomic Design',
+      'Design System',
+      'UI Inventory',
+      'Consistency Layers',
+      'CSS Modules',
+      'CSS BEM / OOCSS / SMACSS',
+      'TailwindCSS',
     ],
   },
   reactAndEcosystem: {
-    title: "Core & Ecosistema React",
+    title: 'Core & Ecosistema React',
     tools: [
-      "React",
-      "Astro (SSR + Islands)",
-      "HTML5",
-      "TanStack Query",
-      "Redux Tool Kit",
-      "Nanostores",
-      "GSAP",
-      "Framer Motion",
+      'React',
+      'Astro (SSR + Islands)',
+      'HTML5',
+      'TanStack Query',
+      'Redux Tool Kit',
+      'Nanostores',
+      'GSAP',
+      'Framer Motion',
     ],
   },
   backend: {
-    title: "Backend & Persistencia",
-    tools: ["Node.js", "NestJS", "PostgreSQL", "TypeORM"],
+    title: 'Backend & Persistencia',
+    tools: ['Node.js', 'NestJS', 'PostgreSQL', 'TypeORM'],
   },
   devOps: {
-    title: "DevOps, Calidad & Herramientas",
+    title: 'DevOps, Calidad & Herramientas',
     tools: [
-      "Git / GitFlow",
-      "GitLab CI/CD",
-      "Google Cloud Platform",
-      "NGINX",
-      "PM2",
-      "Bash",
-      "Biome",
-      "ESLint + Prettier",
+      'Git / GitFlow',
+      'GitLab CI/CD',
+      'Google Cloud Platform',
+      'NGINX',
+      'PM2',
+      'Bash',
+      'Biome',
+      'ESLint + Prettier',
     ],
   },
 };
