@@ -32,16 +32,16 @@ jobs:
       - name: Compress Artifact
         run: |
           # Crea un archivo tipo: mi-app-react.v1.0.0.tar.gz
-          tar -czf ${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz dist
+          tar -czf ${{env.PROJECT_NAME}}.${{github.ref_name}}.tar.gz dist
 
       # 2. CREAR RELEASE EN GITHUB
       # Sube ese archivo específico a la sección Releases de tu repo
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          files: ${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz
+          files: ${{env.PROJECT_NAME}}.${{github.ref_name}}.tar.gz
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
   deploy:
     needs: build-and-release
@@ -51,22 +51,22 @@ jobs:
       - name: Deploy to VPS
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           # Enviamos el archivo con su nombre de versión
-          source: "${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz"
+          source: "${{env.PROJECT_NAME}}.${{github.ref_name}}.tar.gz"
           target: "/tmp" 
 
       # 4. INSTALAR EN EL SERVIDOR
       - name: Activate Version
         uses: appleboy/ssh-action@v1.0.3
         env: 
-          VERSION_FILE: "${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz"
+          VERSION_FILE: "${{env.PROJECT_NAME}}.${{github.ref_name}}.tar.gz"
         with:
-          host: ${{ secrets.VPS_HOST }}
-          username: ${{ secrets.VPS_USER }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{secrets.VPS_HOST}}
+          username: ${{secrets.VPS_USER}}
+          key: ${{secrets.SSH_PRIVATE_KEY}}
           envs: VERSION_FILE # Pasamos la variable al script remoto
           script: |
             # Definir rutas
