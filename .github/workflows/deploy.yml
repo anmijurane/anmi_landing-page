@@ -1,0 +1,82 @@
+name: Build & Release Versioned
+
+on:
+  push:
+    tags:
+      - 'v*' # Se activa al pushear tags como v1.0.0, v2.1.5, etc.
+
+env:
+  # Definimos el nombre base para no repetirlo
+  PROJECT_NAME: "landing-anmijurane"
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node & Build
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: |
+          npm ci
+          npm run build
+
+      # 1. EMPAQUETADO CON NOMBRE DE VERSIÓN
+      # Aquí ocurre la magia. Usamos github.ref_name para el nombre.
+      - name: Compress Artifact
+        run: |
+          # Crea un archivo tipo: mi-app-react.v1.0.0.tar.gz
+          tar -czf ${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz dist
+
+      # 2. CREAR RELEASE EN GITHUB
+      # Sube ese archivo específico a la sección Releases de tu repo
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: ${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    needs: build-and-release
+    runs-on: ubuntu-latest
+    steps:
+      # 3. TRANSFERIR EL ARCHIVO VERSIONADO
+      - name: Deploy to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          # Enviamos el archivo con su nombre de versión
+          source: "${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz"
+          target: "/tmp" 
+
+      # 4. INSTALAR EN EL SERVIDOR
+      - name: Activate Version
+        uses: appleboy/ssh-action@v1.0.3
+        env: 
+          VERSION_FILE: "${{ env.PROJECT_NAME }}.${{ github.ref_name }}.tar.gz"
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          envs: VERSION_FILE # Pasamos la variable al script remoto
+          script: |
+            # Definir rutas
+            RELEASE_PATH="/tmp/$VERSION_FILE"
+            DEST_DIR="/var/www/anmijurane.dev"
+            
+            echo "Desplegando versión: $VERSION_FILE"
+            
+            rm -rf $DEST_DIR/*
+            tar -xzf $RELEASE_PATH -C $DEST_DIR --strip-components=1
+            
+            # (Opcional) Guardar backup en el VPS
+            # mv $RELEASE_PATH /var/www/backups/
+            rm $RELEASE_PATH # O borrarlo si no quieres backups locales
+            
+            echo "¡Versión $VERSION_FILE desplegada con éxito!"
