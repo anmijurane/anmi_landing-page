@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: '20'
       - run: |
-          npm ci
+          npm i
           npm run build
 
       # 1. EMPAQUETADO CON NOMBRE DE VERSIÓN
