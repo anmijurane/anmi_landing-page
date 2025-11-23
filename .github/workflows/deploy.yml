@@ -5,6 +5,9 @@ on:
     tags:
       - 'v*' # Se activa al pushear tags como v1.0.0, v2.1.5, etc.
 
+permissions:
+  contents: write
+
 env:
   # Definimos el nombre base para no repetirlo
   PROJECT_NAME: "landing-anmijurane"
