@@ -1,0 +1,25 @@
+---
+import { type CollectionEntry, getCollection, render } from 'astro:content';
+import Header from '@components/Header.astro';
+import MainLayout from 'src/layout/MainLayout.astro';
+
+export async function getStaticPaths() {
+  const technologies = await getCollection('technologies');
+  return technologies.map((technology: CollectionEntry<'technologies'>) => {
+    return {
+      params: { slug: technology.id },
+      props: technology,
+    };
+  });
+}
+type Props = CollectionEntry<'technologies'>;
+
+const technology = Astro.props;
+
+const { Content } = await render(technology);
+---
+
+<MainLayout>
+  <Header />
+  <Content />
+</MainLayout>
