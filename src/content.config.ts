@@ -8,6 +8,16 @@ const technologies = defineCollection({
     title: z.string(),
     description: z.string(),
     pubDate: z.coerce.date(),
+    heroImage: z.string().optional(),
+    icon: z.string().optional(),
+    category: z.enum([
+      'Arquitectura Frontend & UI',
+      'Core & Ecosistema Frontend',
+      'Backend & Persistencia',
+      'DevOps, Calidad & Herramientas',
+    ]),
+    color: z.string().optional(),
+    isDraft: z.boolean().optional().default(false),
   }),
 });
 
