@@ -2,10 +2,16 @@
 import '@styles/main.css';
 
 const TITLE = 'Andres Jurado - Desarrollador Web';
+
+interface Props {
+  themeColor?: string;
+}
+
+const { themeColor = 'var(--color-cyan-400)' } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang="es" style={`--color-theme-primary: ${themeColor}`}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />

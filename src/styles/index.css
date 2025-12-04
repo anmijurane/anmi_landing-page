@@ -11,7 +11,7 @@ body {
   top: 0;
   width: 10px;
   height: 10px;
-  background-color: #22d3ee;
+  background-color: var(--color-theme-primary);
   border-radius: 50%;
   pointer-events: none;
   transform: translate(-50%, -50%);
@@ -57,15 +57,15 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #22d3ee;
+  background: var(--color-theme-primary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #16a3b6;
+  background: var(--color-theme-primary);
 }
 
 .nav-link-active.nav-link-active {
-  color: #22d3ee;
-  text-shadow: 0 0 8px rgba(34, 211, 238, 0.5);
+  color: var(--color-theme-primary);
+  text-shadow: 0 0 8px rgba(var(--color-theme-primary), 0.5);
 }
