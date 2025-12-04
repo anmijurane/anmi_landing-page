@@ -12,7 +12,7 @@
         "./src/styles/*"
       ],
       "@layouts/*": [
-        "./src/layouts/*"
+        "./src/layout/*"
       ],
       "@components/*": [
         "./src/components/*"
@@ -23,7 +23,7 @@
       "@scripts/*": [
         "./src/scripts/*"
       ],
-      "@types-ts/*": [
+      "@app-types/*": [
         "./src/types/*"
       ],
       "@data/*": [
