@@ -1,0 +1,85 @@
+---
+interface Props {
+  date: Date | string;
+  size?: string;
+}
+
+const { date, size = '100%' } = Astro.props;
+
+let dateObj = new Date(date);
+
+if (typeof date === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(date)) {
+  const [year, month, day] = date.split('-').map(Number);
+  dateObj = new Date(year, month - 1, day);
+}
+
+const dayName = dateObj.toLocaleDateString('es-ES', { weekday: 'long' });
+const dayNumber = dateObj.getDate();
+const monthName = dateObj.toLocaleDateString('es-ES', { month: 'short' });
+
+const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const dayNameCap = capitalize(dayName);
+const monthNameCap = capitalize(monthName).toUpperCase();
+---
+
+<svg 
+  width={size} 
+  height={size} 
+  viewBox="0 0 512 512" 
+  version="1.1"
+  style="--color-paper-bg: #FFFFFF; --color-paper-bg-contrast: #F4F4F5; --color-month: #595959; --color-primary: var(--color-theme-primary, #22d3ee); --color-accent: #D8D8D8;"
+  xmlns="http://www.w3.org/2000/svg" 
+  xmlns:xlink="http://www.w3.org/1999/xlink" 
+  xml:space="preserve"
+>
+  <g>
+    <g>
+      <!-- Paper Background -->
+      <path style="fill:var(--color-paper-bg);" d="M494.406,17.657L376.968,135.095l-15.909,15.825v0.083l-81.624,81.624l-85.038,84.955
+        l-20.573,20.572L21.489,490.575l-3.831,3.748C11.661,488.326,6.913,481.08,3.915,473C1.332,466.421,0,459.342,0,451.929V59.968
+        C0,26.986,27.069,0,60.052,0h391.96c5.081,0,9.995,0.666,14.659,1.915C477.332,4.497,486.827,10.078,494.406,17.657z"/>
+      <path style="fill: var(--color-paper-bg-contrast);" d="M494.373,17.618L17.654,494.337c10.876,10.876,25.878,17.627,42.38,17.627h391.959
+        c33.004,0,60.007-27.003,60.007-60.007V59.998C512,43.496,505.249,28.494,494.373,17.618z"/>
+    </g>
+    
+    <!-- Dynamic Text -->
+
+    <!-- Day Name -->
+    <text 
+      x="256" 
+      y="140" 
+      text-anchor="middle" 
+      style="fill: var(--color-primary); font-family: sans-serif; font-size: 80px;"
+    >
+      {dayNameCap}
+    </text>
+
+    <!-- Day Number -->
+    <text 
+      x="256" 
+      y="320" 
+      text-anchor="middle" 
+      style="fill: var(--color-month); font-family: sans-serif; font-weight: bold; font-size: 180px;"
+    >
+      {dayNumber}
+    </text>
+
+    <!-- Month Name -->
+    <text 
+      x="256" 
+      y="420"
+      text-anchor="middle" 
+      style="fill: var(--color-month); font-family: sans-serif; font-weight: bold; font-size: 60px;"
+    >
+      {monthNameCap}
+    </text>
+
+    <!-- Holes -->
+    <path style="fill: var(--color-primary);" d="M60.416,49.784h-1.402c-7.514,0-13.662-6.148-13.662-13.662V34.72
+      c0-7.514,6.148-13.662,13.662-13.662h1.402c7.514,0,13.662,6.148,13.662,13.662v1.402C74.078,43.636,67.93,49.784,60.416,49.784z"
+      />
+    <path style="fill: var(--color-accent);" d="M102.548,49.784h-1.402c-7.514,0-13.662-6.148-13.662-13.662V34.72
+      c0-7.514,6.148-13.662,13.662-13.662h1.402c7.514,0,13.662,6.148,13.662,13.662v1.402C116.21,43.636,110.062,49.784,102.548,49.784
+      z"/>
+  </g>
+</svg>

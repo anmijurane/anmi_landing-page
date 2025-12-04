@@ -1,0 +1,30 @@
+---
+interface Props {
+  size?: '1' | '1.5' | '2' | '2.5' | '3' | '3.5' | '4' | '5' | '6' | '7' | '8' | '9' | '10';
+}
+
+const { size = '5' } = Astro.props;
+
+const sizeClass: Record<string, string> = {
+  '1': 'my-1',
+  '1.5': 'my-1.5',
+  '2': 'my-2',
+  '2.5': 'my-2.5',
+  '3': 'my-3',
+  '3.5': 'my-3.5',
+  '4': 'my-4',
+  '5': 'my-5',
+  '6': 'my-6',
+  '7': 'my-7',
+  '8': 'my-8',
+  '9': 'my-9',
+  '10': 'my-10',
+};
+---
+
+<hr
+  class="w-full border border-theme-primary/50"
+  class:list={{
+    [sizeClass[size]]: true,
+  }}
+/>

@@ -1,0 +1,89 @@
+---
+import type { Collection } from '@app-types/blog';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
+import utc from 'dayjs/plugin/utc';
+import LineSeparator from './LineSeparator.astro';
+import Select from './Select.astro';
+import 'dayjs/locale/es';
+
+dayjs.extend(relativeTime);
+dayjs.extend(utc);
+
+interface Props {
+  collections: Collection[];
+  slug: string;
+}
+
+const { collections, slug } = Astro.props;
+
+const categories = Array.from(new Set(collections.map(collection => collection.category)));
+---
+
+<aside class="w-full border border-theme-primary p-4 md:pl-4 rounded-2xl min-h-fit bg-gray-900">
+
+  <Select
+    label="Herramientas"
+    options={[ { value: 'all', label: 'Todo' }, ...categories.map(category => ({ value: category, label: category })) ]}
+    id="technologies-select"
+  />
+  <LineSeparator size="5" />
+  <ul class="mt-4 flex overflow-x-scroll md:overflow-x-hidden flex-row md:flex-col">
+    {collections.map(collection => (
+      <li
+        class="filter-item mb-4 py-2 text-gray-200 border-l-2 border-theme-primary pl-2 text-left gap-4 min-w-60 md:gap-3 hover:bg-gray-800 lg:hover:translate-x-2"
+        class:list={{ 'bg-gray-800 translate-x-0 md:translate-x-2': collection.slug === slug }}
+        data-category={collection.category}
+      >
+        <a href={`/technologies/${collection.slug}`} class="flex gap-3">
+          <img src={collection.icon || '/icons/technologies/default.svg'} alt={collection.title} class="w-12 h-12" />
+          <div class="flex flex-col">
+            {collection.title}
+            <span class="text-gray-400 text-sm">Publicado el {dayjs(collection.date).utc().locale('es').format('DD MMM YYYY')}</span>
+          </div>
+        </a>
+      </li>
+    ))}
+  </ul>
+
+</aside>
+
+<script>
+  const __init__ = () => {
+    const select = document.querySelector<HTMLSelectElement>('#technologies-select');
+    if (!select) return;
+
+    select.addEventListener('change', () => {
+      const category = select?.value || 'all';
+      const listItems = document.querySelectorAll('.filter-item');
+      listItems.forEach((item) => {
+        const li = item as HTMLElement;
+        if (category === 'all' || li.dataset.category === category) {
+          li.classList.remove('filter-hidden');
+        } else {
+          li.classList.add('filter-hidden');
+        }
+      });
+    });
+  };
+  __init__();
+</script>
+
+<style>
+  .filter-item {
+    transition: all 0.5s ease-in-out;
+    max-height: 120px;
+    opacity: 1;
+    overflow: hidden;
+  }
+
+  .filter-hidden {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    border-left-width: 0;
+    pointer-events: none;
+  }
+</style>
